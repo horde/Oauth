@@ -1,0 +1,109 @@
+----------
+v2.0.5-git
+----------
+
+
+------
+v2.0.4
+------
+
+[jan] Mark PHP 7 as supported.
+
+
+------
+v2.0.3
+------
+
+[jan] Fix issues with certain locales like Turkish.
+
+
+------
+v2.0.2
+------
+
+[jan] Add Composer definition.
+
+
+------
+v2.0.1
+------
+
+[jan] Re-packaged 2.0.0 release.
+
+
+------
+v2.0.0
+------
+
+First stable release for Horde 5.
+
+
+-----------
+v2.0.0beta1
+-----------
+
+First beta release for Horde 5.
+
+
+------------
+v2.0.0alpha1
+------------
+
+First alpha release for Horde 5.
+[mjr] Fix building signature when using over ssl.
+
+
+------
+v1.0.2
+------
+
+[mjr] Fix building signature when using over ssl.
+
+
+------
+v1.0.1
+------
+
+[rla] Add license file.
+
+
+------
+v1.0.0
+------
+
+First stable release for Horde 4.
+
+
+---------
+v1.0.0RC2
+---------
+
+Second release candidate for Horde 4.
+
+
+---------
+v1.0.0RC1
+---------
+
+First release candidate for Horde 4.
+
+
+-----------
+v1.0.0beta1
+-----------
+
+First beta release for Horde 4.
+
+
+------------
+v1.0.0alpha1
+------------
+
+First alpha release for Horde 4.
+
+
+------
+v0.1.0
+------
+
+Initial release
