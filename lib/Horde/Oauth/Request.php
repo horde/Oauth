@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2008-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2008-2026 Horde LLC (http://www.horde.org/)
  *
  * @author   Chuck Hagenbuch <chuck@horde.org>
  * @license  http://www.horde.org/licenses/bsd BSD
@@ -18,13 +19,13 @@
  */
 class Horde_Oauth_Request
 {
-    const VERSION = '1.0';
+    public const VERSION = '1.0';
 
-    protected $_params = array();
+    protected $_params = [];
     protected $_url;
     protected $_method;
 
-    function __construct($url, $params = array(), $method = 'POST')
+    public function __construct($url, $params = [], $method = 'POST')
     {
         if (!isset($params['oauth_version'])) {
             $params['oauth_version'] = self::VERSION;
@@ -73,13 +74,13 @@ class Horde_Oauth_Request
      */
     public function getSignatureBaseString()
     {
-        $parts = array(
+        $parts = [
             $this->_getNormalizedHttpMethod(),
             $this->_getNormalizedUrl(),
-            $this->_getSignableParameters()
-        );
+            $this->_getSignableParameters(),
+        ];
 
-        return implode('&', array_map(array('Horde_Oauth_Utils', 'urlencodeRfc3986'), $parts));
+        return implode('&', array_map(['Horde_Oauth_Utils', 'urlencodeRfc3986'], $parts));
     }
 
     /**
@@ -87,7 +88,7 @@ class Horde_Oauth_Request
      */
     public function buildHttpQuery()
     {
-        $parts = array();
+        $parts = [];
         foreach ($this->_params as $k => $v) {
             $parts[] = Horde_Oauth_Utils::urlencodeRfc3986($k) . '=' . Horde_Oauth_Utils::urlencodeRfc3986($v);
         }
@@ -143,15 +144,15 @@ class Horde_Oauth_Request
         }
 
         // Urlencode both keys and values
-        $keys = array_map(array('Horde_Oauth_Utils', 'urlencodeRfc3986'), array_keys($params));
-        $values = array_map(array('Horde_Oauth_Utils', 'urlencodeRfc3986'), array_values($params));
+        $keys = array_map(['Horde_Oauth_Utils', 'urlencodeRfc3986'], array_keys($params));
+        $values = array_map(['Horde_Oauth_Utils', 'urlencodeRfc3986'], array_values($params));
         $params = array_combine($keys, $values);
 
         // Sort by keys (natsort)
         uksort($params, 'strnatcmp');
 
         // Generate key=value pairs
-        $pairs = array();
+        $pairs = [];
         foreach ($params as $key => $value) {
             if (is_array($value)) {
                 // If the value is an array, it's because there are multiple values
@@ -186,13 +187,13 @@ class Horde_Oauth_Request
         $scheme = $parts['scheme'];
         $port = !empty($parts['port'])
             ? $parts['port']
-            : $scheme == 'https' ? '443' : '80';
+            : ($scheme == 'https' ? '443' : '80');
 
         $host = $parts['host'];
         $path = !empty($parts['path']) ? $parts['path'] : '';
 
-        if (($scheme == 'https' && $port != '443') ||
-            ($scheme == 'http' && $port != '80')) {
+        if (($scheme == 'https' && $port != '443')
+            || ($scheme == 'http' && $port != '80')) {
             $host = "$host:$port";
         }
 

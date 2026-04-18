@@ -17,6 +17,7 @@ use Horde\Oauth\Server\Entity\Client;
 use Horde\Oauth\Server\Entity\RefreshToken;
 use Horde\Oauth\Server\Entity\Scope;
 use Horde\Oauth\Server\Repository\RefreshTokenRepository;
+use DateTimeImmutable;
 
 final class RefreshTokenIssuer
 {
@@ -31,7 +32,7 @@ final class RefreshTokenIssuer
     public function issue(string $accessTokenId, Client $client, ?string $identityId, array $scopes): string
     {
         $tokenId = bin2hex(random_bytes(32));
-        $expiresAt = new \DateTimeImmutable("+{$this->ttl} seconds");
+        $expiresAt = new DateTimeImmutable("+{$this->ttl} seconds");
 
         $entity = new RefreshToken(
             $tokenId,

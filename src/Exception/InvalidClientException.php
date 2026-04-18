@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Exception;
 
+use Throwable;
+
 final class InvalidClientException extends OAuthException
 {
     public function __construct(
         string $errorDescription = '',
         string $errorUri = '',
-        ?\Throwable $previous = null,
+        ?Throwable $previous = null,
     ) {
         parent::__construct('invalid_client', $errorDescription, $errorUri, 401, $previous);
     }

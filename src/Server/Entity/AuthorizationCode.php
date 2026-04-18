@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Server\Entity;
 
+use DateTimeImmutable;
+
 final class AuthorizationCode
 {
     public function __construct(
@@ -24,13 +26,13 @@ final class AuthorizationCode
         public readonly ?string $codeChallenge,
         public readonly ?string $codeChallengeMethod,
         public readonly ?string $nonce,
-        public readonly \DateTimeImmutable $expiresAt,
+        public readonly DateTimeImmutable $expiresAt,
         public readonly bool $used = false,
     ) {}
 
     public function isExpired(): bool
     {
-        return new \DateTimeImmutable() >= $this->expiresAt;
+        return new DateTimeImmutable() >= $this->expiresAt;
     }
 
     public function isUsed(): bool

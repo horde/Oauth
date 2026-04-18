@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Exception;
 
+use Throwable;
+
 final class AccessDeniedException extends OAuthException
 {
     public function __construct(
         string $errorDescription = '',
         string $errorUri = '',
-        ?\Throwable $previous = null,
+        ?Throwable $previous = null,
     ) {
         parent::__construct('access_denied', $errorDescription, $errorUri, 403, $previous);
     }

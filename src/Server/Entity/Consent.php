@@ -13,13 +13,15 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Server\Entity;
 
+use DateTimeImmutable;
+
 final class Consent
 {
     public function __construct(
         public readonly string $identityId,
         public readonly string $clientId,
         public readonly string $scope,
-        public readonly \DateTimeImmutable $grantedAt,
+        public readonly DateTimeImmutable $grantedAt,
     ) {}
 
     public function coversScope(string $requestedScope): bool

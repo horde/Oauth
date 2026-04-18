@@ -13,14 +13,17 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Exception;
 
-class OAuthException extends \RuntimeException
+use RuntimeException;
+use Throwable;
+
+class OAuthException extends RuntimeException
 {
     public function __construct(
         private readonly string $error,
         string $errorDescription = '',
         private readonly string $errorUri = '',
         private readonly int $httpStatusCode = 400,
-        ?\Throwable $previous = null,
+        ?Throwable $previous = null,
     ) {
         parent::__construct($errorDescription, 0, $previous);
     }

@@ -19,6 +19,7 @@ use Horde\Oauth\Server\Entity\AccessToken;
 use Horde\Oauth\Server\Entity\Client;
 use Horde\Oauth\Server\Entity\Scope;
 use Horde\Oauth\Server\Repository\AccessTokenRepository;
+use DateTimeImmutable;
 
 final class AccessTokenIssuer
 {
@@ -38,7 +39,7 @@ final class AccessTokenIssuer
     {
         $jti = bin2hex(random_bytes(16));
         $scopeString = Scope::toSpaceSeparated($scopes);
-        $expiresAt = new \DateTimeImmutable("+{$this->ttl} seconds");
+        $expiresAt = new DateTimeImmutable("+{$this->ttl} seconds");
 
         $claims = [
             'iss' => $this->issuer,
