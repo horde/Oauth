@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Server\Entity;
 
+use DateTimeImmutable;
+
 final class RefreshToken
 {
     public function __construct(
@@ -21,13 +23,13 @@ final class RefreshToken
         public readonly string $clientId,
         public readonly ?string $identityId,
         public readonly string $scope,
-        public readonly \DateTimeImmutable $expiresAt,
+        public readonly DateTimeImmutable $expiresAt,
         public readonly bool $revoked = false,
     ) {}
 
     public function isExpired(): bool
     {
-        return new \DateTimeImmutable() >= $this->expiresAt;
+        return new DateTimeImmutable() >= $this->expiresAt;
     }
 
     public function isRevoked(): bool

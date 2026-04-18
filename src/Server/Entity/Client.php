@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Horde\Oauth\Server\Entity;
 
+use DateTimeImmutable;
+
 final class Client
 {
     /**
@@ -28,8 +30,8 @@ final class Client
         public readonly string $scope,
         public readonly string $clientType,
         public readonly string $tokenEndpointAuthMethod = 'client_secret_basic',
-        public readonly ?\DateTimeImmutable $createdAt = null,
-        public readonly ?\DateTimeImmutable $updatedAt = null,
+        public readonly ?DateTimeImmutable $createdAt = null,
+        public readonly ?DateTimeImmutable $updatedAt = null,
     ) {}
 
     public function isConfidential(): bool

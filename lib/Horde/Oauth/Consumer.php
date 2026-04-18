@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2008-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2008-2026 Horde LLC (http://www.horde.org/)
  *
  * @author   Chuck Hagenbuch <chuck@horde.org>
  * @license  http://www.horde.org/licenses/bsd BSD
@@ -38,9 +39,9 @@ class Horde_Oauth_Consumer
     public function __construct($config)
     {
         // Check for required config
-        if (!is_array($config) || empty($config['key']) || empty($config['secret']) ||
-            empty($config['requestTokenUrl']) || empty($config['authorizeTokenUrl']) ||
-            empty($config['signatureMethod'])) {
+        if (!is_array($config) || empty($config['key']) || empty($config['secret'])
+            || empty($config['requestTokenUrl']) || empty($config['authorizeTokenUrl'])
+            || empty($config['signatureMethod'])) {
 
             throw new InvalidArgumentException('Missing a required parameter in Horde_Oauth_Consumer::__construct');
         }
@@ -49,7 +50,7 @@ class Horde_Oauth_Consumer
 
     public function __get($name)
     {
-        return isset($this->_config[$name]) ? $this->_config[$name] : null;
+        return $this->_config[$name] ?? null;
     }
 
     /**
@@ -59,7 +60,7 @@ class Horde_Oauth_Consumer
      *
      * @return Horde_Oauth_Token  The oauth request token
      */
-    public function getRequestToken($params = array())
+    public function getRequestToken($params = [])
     {
         $params['oauth_consumer_key'] = $this->key;
         $params['oauth_callback'] = $this->callbackUrl;
@@ -67,7 +68,7 @@ class Horde_Oauth_Consumer
         $request = new Horde_Oauth_Request($this->requestTokenUrl, $params);
         $request->sign($this->signatureMethod, $this);
 
-        $client = new Horde_Http_Client;
+        $client = new Horde_Http_Client();
 
         try {
             $response = $client->post(
@@ -104,7 +105,7 @@ class Horde_Oauth_Consumer
      *
      * @return unknown_type
      */
-    public function getAccessToken($token, $params = array())
+    public function getAccessToken($token, $params = [])
     {
         $params['oauth_consumer_key'] = $this->key;
         $params['oauth_token'] = $token->key;
@@ -112,7 +113,7 @@ class Horde_Oauth_Consumer
         $request = new Horde_Oauth_Request($this->accessTokenUrl, $params);
         $request->sign($this->signatureMethod, $this, $token);
 
-        $client = new Horde_Http_Client;
+        $client = new Horde_Http_Client();
         try {
             $response = $client->post(
                 $this->accessTokenUrl,

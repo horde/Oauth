@@ -29,6 +29,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use DateTimeImmutable;
 
 final class AuthorizationEndpoint implements RequestHandlerInterface
 {
@@ -118,7 +119,7 @@ final class AuthorizationEndpoint implements RequestHandlerInterface
             $request->codeChallenge,
             $request->codeChallengeMethod,
             $request->nonce,
-            new \DateTimeImmutable('+10 minutes'),
+            new DateTimeImmutable('+10 minutes'),
         );
         $this->authCodeRepository->persist($authCode);
 

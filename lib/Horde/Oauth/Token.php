@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2008-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2008-2026 Horde LLC (http://www.horde.org/)
  *
  * @author   Chuck Hagenbuch <chuck@horde.org>
  * @license  http://www.horde.org/licenses/bsd BSD
@@ -25,7 +26,7 @@ class Horde_Oauth_Token
      * key = the token
      * secret = the token secret
      */
-    function __construct($key, $secret)
+    public function __construct($key, $secret)
     {
         $this->key = $key;
         $this->secret = $secret;
@@ -38,8 +39,8 @@ class Horde_Oauth_Token
     public function __toString()
     {
         return
-            'oauth_token='.Horde_Oauth_Utils::urlencodeRfc3986($this->key).
-            '&oauth_token_secret='.Horde_Oauth_Utils::urlencodeRfc3986($this->secret);
+            'oauth_token=' . Horde_Oauth_Utils::urlencodeRfc3986($this->key)
+            . '&oauth_token_secret=' . Horde_Oauth_Utils::urlencodeRfc3986($this->secret);
     }
 
     public static function fromString($string)

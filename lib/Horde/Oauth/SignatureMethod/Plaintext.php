@@ -1,6 +1,7 @@
 <?php
+
 /**
- * Copyright 2008-2017 Horde LLC (http://www.horde.org/)
+ * Copyright 2008-2026 Horde LLC (http://www.horde.org/)
  *
  * @author   Chuck Hagenbuch <chuck@horde.org>
  * @license  http://www.horde.org/licenses/bsd BSD
@@ -25,9 +26,9 @@ class Horde_Oauth_SignatureMethod_Plaintext extends Horde_Oauth_SignatureMethod
 
     public function sign($request, $consumer, $token)
     {
-        $signature = array(
+        $signature = [
             Horde_Oauth_Utils::urlencodeRfc3986($consumer->secret),
-        );
+        ];
 
         if ($token) {
             $signature[] = Horde_Oauth_Utils::urlencodeRfc3986($token->secret);
