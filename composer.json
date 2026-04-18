@@ -1,7 +1,7 @@
 {
     "minimum-stability": "dev",
     "name": "horde/oauth",
-    "description": "OAuth client library",
+    "description": "OAuth 1.0a, OAuth 2.0 and OpenID Connect library",
     "type": "library",
     "homepage": "https://www.horde.org/libraries/Horde_Oauth",
     "license": "BSD-2-Clause",
@@ -10,28 +10,55 @@
             "name": "Chuck Hagenbuch",
             "email": "chuck@horde.org",
             "role": "lead"
+        },
+        {
+            "name": "Ralf Lang",
+            "email": "ralf.lang@ralf-lang.de",
+            "role": "lead"
         }
     ],
-    "time": "2021-07-04",
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://horde-satis.maintaina.com/"
+            "type": "path",
+            "url": "../Jwt"
+        },
+        {
+            "type": "path",
+            "url": "../Http"
         }
     ],
     "require": {
-        "php": "^7",
-        "horde/exception": "^3 || dev-FRAMEWORK_6_0",
-        "horde/http": "^3 || dev-FRAMEWORK_6_0",
-        "horde/util": "^3 || dev-FRAMEWORK_6_0",
+        "php": "^8.1",
+        "horde/jwt": "^1 || dev-FRAMEWORK_6_0",
+        "psr/http-message": "^2",
+        "psr/http-factory": "^1.0.2",
+        "psr/http-client": "^1.0.3",
+        "psr/http-server-handler": "^1.0.2",
+        "psr/http-server-middleware": "^1.0.2",
         "ext-hash": "*",
+        "ext-json": "*",
         "ext-openssl": "*"
     },
-    "require-dev": {},
-    "suggest": {},
+    "require-dev": {
+        "horde/http": "^3 || dev-FRAMEWORK_6_0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "suggest": {
+        "horde/http": "PSR-7/17/18 implementation; also needed for legacy OAuth 1.0a in lib/",
+        "horde/exception": "Needed for legacy OAuth 1.0a classes in lib/",
+        "horde/util": "Needed for legacy OAuth 1.0a classes in lib/"
+    },
     "autoload": {
         "psr-0": {
             "Horde_Oauth": "lib/"
+        },
+        "psr-4": {
+            "Horde\\Oauth\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Horde\\Oauth\\Test\\": "test/"
         }
     }
 }
