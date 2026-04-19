@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "name": "horde/oauth",
     "description": "OAuth 1.0a, OAuth 2.0 and OpenID Connect library",
     "type": "library",
@@ -17,16 +16,15 @@
             "role": "lead"
         }
     ],
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../Jwt"
-        },
-        {
-            "type": "path",
-            "url": "../Http"
-        }
+    "keywords": [
+        "rfc6749",
+        "rfc7636",
+        "oauth2",
+        "oidc",
+        "openid-connect"
     ],
+    "time": "2026-04-19",
+    "repositories": [],
     "require": {
         "php": "^8.1",
         "horde/jwt": "^1 || dev-FRAMEWORK_6_0",
@@ -39,15 +37,8 @@
         "ext-json": "*",
         "ext-openssl": "*"
     },
-    "require-dev": {
-        "horde/http": "^3 || dev-FRAMEWORK_6_0",
-        "phpstan/phpstan": "^2.0"
-    },
-    "suggest": {
-        "horde/http": "PSR-7/17/18 implementation; also needed for legacy OAuth 1.0a in lib/",
-        "horde/exception": "Needed for legacy OAuth 1.0a classes in lib/",
-        "horde/util": "Needed for legacy OAuth 1.0a classes in lib/"
-    },
+    "require-dev": {},
+    "suggest": {},
     "autoload": {
         "psr-0": {
             "Horde_Oauth": "lib/"
@@ -59,6 +50,14 @@
     "autoload-dev": {
         "psr-4": {
             "Horde\\Oauth\\Test\\": "test/"
+        }
+    },
+    "config": {
+        "allow-plugins": {}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-FRAMEWORK_6_0": "4.x-dev"
         }
     }
 }
