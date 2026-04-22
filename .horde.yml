@@ -52,6 +52,14 @@ keywords:
   - oidc
   - openid-connect
 vendor: horde
+autoload:
+  psr-0:
+    Horde_Oauth: lib/
+  psr-4:
+    Horde\OAuth\: src/
+autoload-dev:
+  psr-4:
+    Horde\OAuth\Test\: test/
 quality:
   phpstan:
     level: 3
