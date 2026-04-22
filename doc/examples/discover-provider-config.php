@@ -28,7 +28,7 @@ use Horde\Http\Client\Options;
 use Horde\Http\RequestFactory;
 use Horde\Http\ResponseFactory;
 use Horde\Http\StreamFactory;
-use Horde\Oauth\Client\ProviderDiscovery;
+use Horde\OAuth\Client\ProviderDiscovery;
 
 $issuer = $argv[1] ?? 'https://accounts.google.com';
 
