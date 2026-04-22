@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\ClientAuthentication;
+namespace Horde\OAuth\Test\Server\ClientAuthentication;
 
 use Horde\Http\ServerRequest;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretPost;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretPost;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

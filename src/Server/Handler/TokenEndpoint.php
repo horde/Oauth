@@ -11,14 +11,14 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Handler;
+namespace Horde\OAuth\Server\Handler;
 
-use Horde\Oauth\ErrorResponse;
-use Horde\Oauth\Exception\OAuthException;
-use Horde\Oauth\Exception\InvalidRequestException;
-use Horde\Oauth\Exception\UnsupportedGrantTypeException;
-use Horde\Oauth\Server\ClientAuthentication\ClientAuthenticatorChain;
-use Horde\Oauth\Server\Grant\Grant;
+use Horde\OAuth\ErrorResponse;
+use Horde\OAuth\Exception\OAuthException;
+use Horde\OAuth\Exception\InvalidRequestException;
+use Horde\OAuth\Exception\UnsupportedGrantTypeException;
+use Horde\OAuth\Server\ClientAuthentication\ClientAuthenticatorChain;
+use Horde\OAuth\Server\Grant\Grant;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

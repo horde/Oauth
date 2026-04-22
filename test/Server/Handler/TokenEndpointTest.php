@@ -11,25 +11,25 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Handler;
+namespace Horde\OAuth\Test\Server\Handler;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\ServerRequest;
 use Horde\Http\StreamFactory;
 use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenEncoder;
-use Horde\Oauth\Server\ClientAuthentication\ClientAuthenticatorChain;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretBasic;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretPost;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Grant\ClientCredentialsGrant;
-use Horde\Oauth\Server\Handler\TokenEndpoint;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryClientRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryScopeRepository;
-use Horde\Oauth\Server\Token\AccessTokenIssuer;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Server\ClientAuthentication\ClientAuthenticatorChain;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretBasic;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretPost;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Grant\ClientCredentialsGrant;
+use Horde\OAuth\Server\Handler\TokenEndpoint;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryClientRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryScopeRepository;
+use Horde\OAuth\Server\Token\AccessTokenIssuer;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

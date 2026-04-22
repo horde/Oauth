@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Handler;
+namespace Horde\OAuth\Server\Handler;
 
-use Horde\Oauth\Server\ServerMetadata;
+use Horde\OAuth\Server\ServerMetadata;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

@@ -11,19 +11,19 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Handler;
+namespace Horde\OAuth\Test\Server\Handler;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\ServerRequest;
 use Horde\Http\StreamFactory;
-use Horde\Oauth\Server\ClientAuthentication\ClientAuthenticatorChain;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretBasic;
-use Horde\Oauth\Server\Entity\AccessToken;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Handler\IntrospectionEndpoint;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryClientRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
+use Horde\OAuth\Server\ClientAuthentication\ClientAuthenticatorChain;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretBasic;
+use Horde\OAuth\Server\Entity\AccessToken;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Handler\IntrospectionEndpoint;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryClientRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable;

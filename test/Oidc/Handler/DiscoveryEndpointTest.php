@@ -11,13 +11,13 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Oidc\Handler;
+namespace Horde\OAuth\Test\Oidc\Handler;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\ServerRequest;
 use Horde\Http\StreamFactory;
-use Horde\Oauth\Oidc\Handler\DiscoveryEndpoint;
-use Horde\Oauth\Server\ServerMetadata;
+use Horde\OAuth\Oidc\Handler\DiscoveryEndpoint;
+use Horde\OAuth\Server\ServerMetadata;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository\InMemory;
+namespace Horde\OAuth\Server\Repository\InMemory;
 
-use Horde\Oauth\Server\Entity\AuthorizationCode;
-use Horde\Oauth\Server\Repository\AuthorizationCodeRepository;
+use Horde\OAuth\Server\Entity\AuthorizationCode;
+use Horde\OAuth\Server\Repository\AuthorizationCodeRepository;
 
 final class InMemoryAuthorizationCodeRepository implements AuthorizationCodeRepository
 {

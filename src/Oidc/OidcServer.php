@@ -11,16 +11,16 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Oidc;
+namespace Horde\OAuth\Oidc;
 
 use Horde\Jwt\Key\PublicKey;
 use Horde\Jwt\Signer\SignerInterface;
 use Horde\Jwt\TokenEncoder;
-use Horde\Oauth\Oidc\Handler\DiscoveryEndpoint;
-use Horde\Oauth\Oidc\Handler\JwksEndpoint;
-use Horde\Oauth\Oidc\Handler\UserinfoEndpoint;
-use Horde\Oauth\Server\AuthorizationServer;
-use Horde\Oauth\Server\ServerMetadata;
+use Horde\OAuth\Oidc\Handler\DiscoveryEndpoint;
+use Horde\OAuth\Oidc\Handler\JwksEndpoint;
+use Horde\OAuth\Oidc\Handler\UserinfoEndpoint;
+use Horde\OAuth\Server\AuthorizationServer;
+use Horde\OAuth\Server\ServerMetadata;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 

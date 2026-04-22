@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository\InMemory;
+namespace Horde\OAuth\Server\Repository\InMemory;
 
-use Horde\Oauth\Server\Entity\Consent;
-use Horde\Oauth\Server\Repository\ConsentRepository;
+use Horde\OAuth\Server\Entity\Consent;
+use Horde\OAuth\Server\Repository\ConsentRepository;
 
 final class InMemoryConsentRepository implements ConsentRepository
 {

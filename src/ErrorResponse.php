@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Horde\Oauth;
 
-use Horde\Oauth\Exception\OAuthException;
+use Horde\OAuth\Exception\OAuthException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;

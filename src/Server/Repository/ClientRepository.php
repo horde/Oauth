@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository;
+namespace Horde\OAuth\Server\Repository;
 
-use Horde\Oauth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Client;
 
 interface ClientRepository
 {

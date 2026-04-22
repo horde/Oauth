@@ -11,13 +11,13 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test;
+namespace Horde\OAuth\Test;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\StreamFactory;
-use Horde\Oauth\ErrorResponse;
-use Horde\Oauth\Exception\InvalidClientException;
-use Horde\Oauth\Exception\OAuthException;
+use Horde\OAuth\ErrorResponse;
+use Horde\OAuth\Exception\InvalidClientException;
+use Horde\OAuth\Exception\OAuthException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

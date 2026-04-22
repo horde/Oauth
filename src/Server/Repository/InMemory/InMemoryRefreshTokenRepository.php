@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository\InMemory;
+namespace Horde\OAuth\Server\Repository\InMemory;
 
-use Horde\Oauth\Server\Entity\RefreshToken;
-use Horde\Oauth\Server\Repository\RefreshTokenRepository;
+use Horde\OAuth\Server\Entity\RefreshToken;
+use Horde\OAuth\Server\Repository\RefreshTokenRepository;
 
 final class InMemoryRefreshTokenRepository implements RefreshTokenRepository
 {

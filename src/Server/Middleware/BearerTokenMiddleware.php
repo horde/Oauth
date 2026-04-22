@@ -11,13 +11,13 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Middleware;
+namespace Horde\OAuth\Server\Middleware;
 
 use Horde\Jwt\Exception\ExpiredTokenException;
 use Horde\Jwt\Exception\InvalidTokenException;
 use Horde\Jwt\TokenDecoder;
 use Horde\Jwt\Verifier\VerifierInterface;
-use Horde\Oauth\Server\Repository\AccessTokenRepository;
+use Horde\OAuth\Server\Repository\AccessTokenRepository;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

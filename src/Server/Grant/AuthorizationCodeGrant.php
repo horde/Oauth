@@ -11,17 +11,17 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Grant;
+namespace Horde\OAuth\Server\Grant;
 
-use Horde\Oauth\Exception\InvalidGrantException;
-use Horde\Oauth\Exception\InvalidRequestException;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Pkce\PkceVerifier;
-use Horde\Oauth\Server\Repository\AuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\ScopeRepository;
-use Horde\Oauth\Server\Token\AccessTokenIssuer;
-use Horde\Oauth\Server\Token\RefreshTokenIssuer;
+use Horde\OAuth\Exception\InvalidGrantException;
+use Horde\OAuth\Exception\InvalidRequestException;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Pkce\PkceVerifier;
+use Horde\OAuth\Server\Repository\AuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\ScopeRepository;
+use Horde\OAuth\Server\Token\AccessTokenIssuer;
+use Horde\OAuth\Server\Token\RefreshTokenIssuer;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class AuthorizationCodeGrant implements Grant

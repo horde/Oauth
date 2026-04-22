@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Grant;
+namespace Horde\OAuth\Server\Grant;
 
-use Horde\Oauth\Exception\OAuthException;
-use Horde\Oauth\Server\Entity\Client;
+use Horde\OAuth\Exception\OAuthException;
+use Horde\OAuth\Server\Entity\Client;
 use Psr\Http\Message\ServerRequestInterface;
 
 interface Grant

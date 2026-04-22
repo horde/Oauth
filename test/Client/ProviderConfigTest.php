@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Client;
+namespace Horde\OAuth\Test\Client;
 
-use Horde\Oauth\Client\ProviderConfig;
+use Horde\OAuth\Client\ProviderConfig;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

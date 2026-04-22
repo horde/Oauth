@@ -11,19 +11,19 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Handler;
+namespace Horde\OAuth\Server\Handler;
 
-use Horde\Oauth\ErrorResponse;
-use Horde\Oauth\Exception\AccessDeniedException;
-use Horde\Oauth\Exception\InvalidRequestException;
-use Horde\Oauth\Exception\OAuthException;
-use Horde\Oauth\Server\AuthorizationRequest;
-use Horde\Oauth\Server\AuthorizationResult;
-use Horde\Oauth\Server\Entity\AuthorizationCode;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Repository\AuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\ClientRepository;
-use Horde\Oauth\Server\Repository\ScopeRepository;
+use Horde\OAuth\ErrorResponse;
+use Horde\OAuth\Exception\AccessDeniedException;
+use Horde\OAuth\Exception\InvalidRequestException;
+use Horde\OAuth\Exception\OAuthException;
+use Horde\OAuth\Server\AuthorizationRequest;
+use Horde\OAuth\Server\AuthorizationResult;
+use Horde\OAuth\Server\Entity\AuthorizationCode;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Repository\AuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\ClientRepository;
+use Horde\OAuth\Server\Repository\ScopeRepository;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

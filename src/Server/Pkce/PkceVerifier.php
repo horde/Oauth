@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Pkce;
+namespace Horde\OAuth\Server\Pkce;
 
 use Horde\Jwt\Base64Url;
-use Horde\Oauth\Exception\InvalidRequestException;
+use Horde\OAuth\Exception\InvalidRequestException;
 
 final class PkceVerifier
 {

@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Oidc;
+namespace Horde\OAuth\Oidc;
 
 interface ClaimsMapper
 {

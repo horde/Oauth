@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\ClientAuthentication;
+namespace Horde\OAuth\Server\ClientAuthentication;
 
 use Psr\Http\Message\ServerRequestInterface;
 

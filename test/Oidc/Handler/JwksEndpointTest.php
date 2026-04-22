@@ -11,14 +11,14 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Oidc\Handler;
+namespace Horde\OAuth\Test\Oidc\Handler;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\ServerRequest;
 use Horde\Http\StreamFactory;
 use Horde\Jwt\Key\PublicKey;
-use Horde\Oauth\Oidc\Handler\JwksEndpoint;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Oidc\Handler\JwksEndpoint;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

@@ -11,13 +11,13 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Handler;
+namespace Horde\OAuth\Server\Handler;
 
-use Horde\Oauth\ErrorResponse;
-use Horde\Oauth\Exception\OAuthException;
-use Horde\Oauth\Server\ClientAuthentication\ClientAuthenticatorChain;
-use Horde\Oauth\Server\Repository\AccessTokenRepository;
-use Horde\Oauth\Server\Repository\RefreshTokenRepository;
+use Horde\OAuth\ErrorResponse;
+use Horde\OAuth\Exception\OAuthException;
+use Horde\OAuth\Server\ClientAuthentication\ClientAuthenticatorChain;
+use Horde\OAuth\Server\Repository\AccessTokenRepository;
+use Horde\OAuth\Server\Repository\RefreshTokenRepository;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

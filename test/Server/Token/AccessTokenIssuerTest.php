@@ -11,16 +11,16 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Token;
+namespace Horde\OAuth\Test\Server\Token;
 
 use Horde\Jwt\Key\PrivateKey;
 use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenEncoder;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Server\Token\AccessTokenIssuer;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Server\Token\AccessTokenIssuer;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

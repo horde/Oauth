@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Repository\InMemory;
+namespace Horde\OAuth\Test\Server\Repository\InMemory;
 
-use Horde\Oauth\Server\Entity\RefreshToken;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
+use Horde\OAuth\Server\Entity\RefreshToken;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable;

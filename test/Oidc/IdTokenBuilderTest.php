@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Oidc;
+namespace Horde\OAuth\Test\Oidc;
 
 use Horde\Jwt\Base64Url;
 use Horde\Jwt\Key\PublicKey;
@@ -19,10 +19,10 @@ use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenDecoder;
 use Horde\Jwt\TokenEncoder;
 use Horde\Jwt\Verifier\Rs256Verifier;
-use Horde\Oauth\Oidc\ClaimsMapper;
-use Horde\Oauth\Oidc\IdTokenBuilder;
-use Horde\Oauth\Oidc\ScopeClaimsMapping;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Oidc\ClaimsMapper;
+use Horde\OAuth\Oidc\IdTokenBuilder;
+use Horde\OAuth\Oidc\ScopeClaimsMapping;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

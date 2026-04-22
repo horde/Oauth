@@ -11,11 +11,11 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\ClientAuthentication;
+namespace Horde\OAuth\Server\ClientAuthentication;
 
-use Horde\Oauth\Exception\InvalidClientException;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Repository\ClientRepository;
+use Horde\OAuth\Exception\InvalidClientException;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Repository\ClientRepository;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class ClientAuthenticatorChain

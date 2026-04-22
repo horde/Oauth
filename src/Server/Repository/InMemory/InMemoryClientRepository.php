@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository\InMemory;
+namespace Horde\OAuth\Server\Repository\InMemory;
 
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Repository\ClientRepository;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Repository\ClientRepository;
 
 final class InMemoryClientRepository implements ClientRepository
 {

@@ -11,26 +11,26 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Oidc;
+namespace Horde\OAuth\Test\Oidc;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\StreamFactory;
 use Horde\Jwt\Key\PublicKey;
 use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenEncoder;
-use Horde\Oauth\Oidc\ClaimsMapper;
-use Horde\Oauth\Oidc\IdTokenBuilder;
-use Horde\Oauth\Oidc\OidcServer;
-use Horde\Oauth\Oidc\ScopeClaimsMapping;
-use Horde\Oauth\Server\AuthorizationServer;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryClientRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryConsentRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryScopeRepository;
-use Horde\Oauth\Server\ServerMetadata;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Oidc\ClaimsMapper;
+use Horde\OAuth\Oidc\IdTokenBuilder;
+use Horde\OAuth\Oidc\OidcServer;
+use Horde\OAuth\Oidc\ScopeClaimsMapping;
+use Horde\OAuth\Server\AuthorizationServer;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryClientRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryConsentRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryScopeRepository;
+use Horde\OAuth\Server\ServerMetadata;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

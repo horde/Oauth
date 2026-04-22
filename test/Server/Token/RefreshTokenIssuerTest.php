@@ -11,12 +11,12 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Token;
+namespace Horde\OAuth\Test\Server\Token;
 
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
-use Horde\Oauth\Server\Token\RefreshTokenIssuer;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
+use Horde\OAuth\Server\Token\RefreshTokenIssuer;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

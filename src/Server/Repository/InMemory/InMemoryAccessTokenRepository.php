@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository\InMemory;
+namespace Horde\OAuth\Server\Repository\InMemory;
 
-use Horde\Oauth\Server\Entity\AccessToken;
-use Horde\Oauth\Server\Repository\AccessTokenRepository;
+use Horde\OAuth\Server\Entity\AccessToken;
+use Horde\OAuth\Server\Repository\AccessTokenRepository;
 
 final class InMemoryAccessTokenRepository implements AccessTokenRepository
 {

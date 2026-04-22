@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Entity;
+namespace Horde\OAuth\Test\Server\Entity;
 
-use Horde\Oauth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Client;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

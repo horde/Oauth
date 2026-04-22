@@ -11,14 +11,14 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Token;
+namespace Horde\OAuth\Server\Token;
 
 use Horde\Jwt\Signer\SignerInterface;
 use Horde\Jwt\TokenEncoder;
-use Horde\Oauth\Server\Entity\AccessToken;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Repository\AccessTokenRepository;
+use Horde\OAuth\Server\Entity\AccessToken;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Repository\AccessTokenRepository;
 use DateTimeImmutable;
 
 final class AccessTokenIssuer

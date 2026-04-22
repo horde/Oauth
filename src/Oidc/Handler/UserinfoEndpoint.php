@@ -11,10 +11,10 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Oidc\Handler;
+namespace Horde\OAuth\Oidc\Handler;
 
-use Horde\Oauth\Oidc\ClaimsMapper;
-use Horde\Oauth\Oidc\ScopeClaimsMapping;
+use Horde\OAuth\Oidc\ClaimsMapper;
+use Horde\OAuth\Oidc\ScopeClaimsMapping;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

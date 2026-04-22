@@ -11,16 +11,16 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Exception;
+namespace Horde\OAuth\Test\Exception;
 
-use Horde\Oauth\Exception\AccessDeniedException;
-use Horde\Oauth\Exception\InvalidClientException;
-use Horde\Oauth\Exception\InvalidGrantException;
-use Horde\Oauth\Exception\InvalidRequestException;
-use Horde\Oauth\Exception\InvalidScopeException;
-use Horde\Oauth\Exception\OAuthException;
-use Horde\Oauth\Exception\UnauthorizedClientException;
-use Horde\Oauth\Exception\UnsupportedGrantTypeException;
+use Horde\OAuth\Exception\AccessDeniedException;
+use Horde\OAuth\Exception\InvalidClientException;
+use Horde\OAuth\Exception\InvalidGrantException;
+use Horde\OAuth\Exception\InvalidRequestException;
+use Horde\OAuth\Exception\InvalidScopeException;
+use Horde\OAuth\Exception\OAuthException;
+use Horde\OAuth\Exception\UnauthorizedClientException;
+use Horde\OAuth\Exception\UnsupportedGrantTypeException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;

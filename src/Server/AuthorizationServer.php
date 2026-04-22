@@ -11,33 +11,33 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server;
+namespace Horde\OAuth\Server;
 
 use Horde\Jwt\Signer\SignerInterface;
 use Horde\Jwt\TokenDecoder;
 use Horde\Jwt\TokenEncoder;
 use Horde\Jwt\Verifier\VerifierInterface;
-use Horde\Oauth\Server\ClientAuthentication\ClientAuthenticatorChain;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretBasic;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretPost;
-use Horde\Oauth\Server\Grant\AuthorizationCodeGrant;
-use Horde\Oauth\Server\Grant\ClientCredentialsGrant;
-use Horde\Oauth\Server\Grant\Grant;
-use Horde\Oauth\Server\Grant\RefreshTokenGrant;
-use Horde\Oauth\Server\Handler\AuthorizationEndpoint;
-use Horde\Oauth\Server\Handler\IntrospectionEndpoint;
-use Horde\Oauth\Server\Handler\MetadataEndpoint;
-use Horde\Oauth\Server\Handler\RevocationEndpoint;
-use Horde\Oauth\Server\Handler\TokenEndpoint;
-use Horde\Oauth\Server\Middleware\BearerTokenMiddleware;
-use Horde\Oauth\Server\Repository\AccessTokenRepository;
-use Horde\Oauth\Server\Repository\AuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\ClientRepository;
-use Horde\Oauth\Server\Repository\ConsentRepository;
-use Horde\Oauth\Server\Repository\RefreshTokenRepository;
-use Horde\Oauth\Server\Repository\ScopeRepository;
-use Horde\Oauth\Server\Token\AccessTokenIssuer;
-use Horde\Oauth\Server\Token\RefreshTokenIssuer;
+use Horde\OAuth\Server\ClientAuthentication\ClientAuthenticatorChain;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretBasic;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretPost;
+use Horde\OAuth\Server\Grant\AuthorizationCodeGrant;
+use Horde\OAuth\Server\Grant\ClientCredentialsGrant;
+use Horde\OAuth\Server\Grant\Grant;
+use Horde\OAuth\Server\Grant\RefreshTokenGrant;
+use Horde\OAuth\Server\Handler\AuthorizationEndpoint;
+use Horde\OAuth\Server\Handler\IntrospectionEndpoint;
+use Horde\OAuth\Server\Handler\MetadataEndpoint;
+use Horde\OAuth\Server\Handler\RevocationEndpoint;
+use Horde\OAuth\Server\Handler\TokenEndpoint;
+use Horde\OAuth\Server\Middleware\BearerTokenMiddleware;
+use Horde\OAuth\Server\Repository\AccessTokenRepository;
+use Horde\OAuth\Server\Repository\AuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\ClientRepository;
+use Horde\OAuth\Server\Repository\ConsentRepository;
+use Horde\OAuth\Server\Repository\RefreshTokenRepository;
+use Horde\OAuth\Server\Repository\ScopeRepository;
+use Horde\OAuth\Server\Token\AccessTokenIssuer;
+use Horde\OAuth\Server\Token\RefreshTokenIssuer;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 

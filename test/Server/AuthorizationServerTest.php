@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server;
+namespace Horde\OAuth\Test\Server;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\StreamFactory;
@@ -19,25 +19,25 @@ use Horde\Jwt\Key\PublicKey;
 use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenEncoder;
 use Horde\Jwt\Verifier\Rs256Verifier;
-use Horde\Oauth\Server\AuthorizationServer;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Grant\AuthorizationCodeGrant;
-use Horde\Oauth\Server\Grant\ClientCredentialsGrant;
-use Horde\Oauth\Server\Grant\RefreshTokenGrant;
-use Horde\Oauth\Server\Handler\AuthorizationEndpoint;
-use Horde\Oauth\Server\Handler\IntrospectionEndpoint;
-use Horde\Oauth\Server\Handler\MetadataEndpoint;
-use Horde\Oauth\Server\Handler\RevocationEndpoint;
-use Horde\Oauth\Server\Handler\TokenEndpoint;
-use Horde\Oauth\Server\Middleware\BearerTokenMiddleware;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryClientRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryConsentRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryScopeRepository;
-use Horde\Oauth\Server\ServerMetadata;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Server\AuthorizationServer;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Grant\AuthorizationCodeGrant;
+use Horde\OAuth\Server\Grant\ClientCredentialsGrant;
+use Horde\OAuth\Server\Grant\RefreshTokenGrant;
+use Horde\OAuth\Server\Handler\AuthorizationEndpoint;
+use Horde\OAuth\Server\Handler\IntrospectionEndpoint;
+use Horde\OAuth\Server\Handler\MetadataEndpoint;
+use Horde\OAuth\Server\Handler\RevocationEndpoint;
+use Horde\OAuth\Server\Handler\TokenEndpoint;
+use Horde\OAuth\Server\Middleware\BearerTokenMiddleware;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryClientRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryConsentRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryScopeRepository;
+use Horde\OAuth\Server\ServerMetadata;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

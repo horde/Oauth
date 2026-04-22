@@ -11,15 +11,15 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\ClientAuthentication;
+namespace Horde\OAuth\Test\Server\ClientAuthentication;
 
 use Horde\Http\ServerRequest;
-use Horde\Oauth\Exception\InvalidClientException;
-use Horde\Oauth\Server\ClientAuthentication\ClientAuthenticatorChain;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretBasic;
-use Horde\Oauth\Server\ClientAuthentication\ClientSecretPost;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryClientRepository;
+use Horde\OAuth\Exception\InvalidClientException;
+use Horde\OAuth\Server\ClientAuthentication\ClientAuthenticatorChain;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretBasic;
+use Horde\OAuth\Server\ClientAuthentication\ClientSecretPost;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryClientRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

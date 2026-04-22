@@ -11,11 +11,11 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Pkce;
+namespace Horde\OAuth\Test\Server\Pkce;
 
 use Horde\Jwt\Base64Url;
-use Horde\Oauth\Exception\InvalidRequestException;
-use Horde\Oauth\Server\Pkce\PkceVerifier;
+use Horde\OAuth\Exception\InvalidRequestException;
+use Horde\OAuth\Server\Pkce\PkceVerifier;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

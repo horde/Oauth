@@ -11,18 +11,18 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Handler;
+namespace Horde\OAuth\Test\Server\Handler;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\ServerRequest;
 use Horde\Http\StreamFactory;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Handler\AuthorizationEndpoint;
-use Horde\Oauth\Server\AuthorizationResult;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryClientRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryScopeRepository;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Handler\AuthorizationEndpoint;
+use Horde\OAuth\Server\AuthorizationResult;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryClientRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryScopeRepository;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 

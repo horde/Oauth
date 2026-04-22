@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server;
+namespace Horde\OAuth\Server;
 
-use Horde\Oauth\Server\Entity\Scope;
+use Horde\OAuth\Server\Entity\Scope;
 
 final class AuthorizationResult
 {

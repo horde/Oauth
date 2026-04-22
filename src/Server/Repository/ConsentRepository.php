@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Repository;
+namespace Horde\OAuth\Server\Repository;
 
-use Horde\Oauth\Server\Entity\Consent;
+use Horde\OAuth\Server\Entity\Consent;
 
 interface ConsentRepository
 {

@@ -11,25 +11,25 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Grant;
+namespace Horde\OAuth\Test\Server\Grant;
 
 use Horde\Http\ServerRequest;
 use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenEncoder;
-use Horde\Oauth\Client\PkceGenerator;
-use Horde\Oauth\Exception\InvalidGrantException;
-use Horde\Oauth\Exception\InvalidRequestException;
-use Horde\Oauth\Server\Entity\AuthorizationCode;
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Grant\AuthorizationCodeGrant;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryScopeRepository;
-use Horde\Oauth\Server\Token\AccessTokenIssuer;
-use Horde\Oauth\Server\Token\RefreshTokenIssuer;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Client\PkceGenerator;
+use Horde\OAuth\Exception\InvalidGrantException;
+use Horde\OAuth\Exception\InvalidRequestException;
+use Horde\OAuth\Server\Entity\AuthorizationCode;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Grant\AuthorizationCodeGrant;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAuthorizationCodeRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryRefreshTokenRepository;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryScopeRepository;
+use Horde\OAuth\Server\Token\AccessTokenIssuer;
+use Horde\OAuth\Server\Token\RefreshTokenIssuer;
+use Horde\OAuth\Test\RsaKeyHelper;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable;

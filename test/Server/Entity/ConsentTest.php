@@ -11,9 +11,9 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Entity;
+namespace Horde\OAuth\Test\Server\Entity;
 
-use Horde\Oauth\Server\Entity\Consent;
+use Horde\OAuth\Server\Entity\Consent;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use DateTimeImmutable;

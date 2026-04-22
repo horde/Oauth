@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Test\Server\Middleware;
+namespace Horde\OAuth\Test\Server\Middleware;
 
 use Horde\Http\ResponseFactory;
 use Horde\Http\ServerRequest;
@@ -22,10 +22,10 @@ use Horde\Jwt\Signer\Rs256Signer;
 use Horde\Jwt\TokenDecoder;
 use Horde\Jwt\TokenEncoder;
 use Horde\Jwt\Verifier\Rs256Verifier;
-use Horde\Oauth\Server\Entity\AccessToken;
-use Horde\Oauth\Server\Middleware\BearerTokenMiddleware;
-use Horde\Oauth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
-use Horde\Oauth\Test\RsaKeyHelper;
+use Horde\OAuth\Server\Entity\AccessToken;
+use Horde\OAuth\Server\Middleware\BearerTokenMiddleware;
+use Horde\OAuth\Server\Repository\InMemory\InMemoryAccessTokenRepository;
+use Horde\OAuth\Test\RsaKeyHelper;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

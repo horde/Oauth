@@ -11,12 +11,12 @@ declare(strict_types=1);
  * @author   Ralf Lang <ralf.lang@ralf-lang.de>
  */
 
-namespace Horde\Oauth\Server\Token;
+namespace Horde\OAuth\Server\Token;
 
-use Horde\Oauth\Server\Entity\Client;
-use Horde\Oauth\Server\Entity\RefreshToken;
-use Horde\Oauth\Server\Entity\Scope;
-use Horde\Oauth\Server\Repository\RefreshTokenRepository;
+use Horde\OAuth\Server\Entity\Client;
+use Horde\OAuth\Server\Entity\RefreshToken;
+use Horde\OAuth\Server\Entity\Scope;
+use Horde\OAuth\Server\Repository\RefreshTokenRepository;
 use DateTimeImmutable;
 
 final class RefreshTokenIssuer
