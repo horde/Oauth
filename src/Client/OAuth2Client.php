@@ -121,6 +121,54 @@ final class OAuth2Client
     }
 
     /**
+     * Build an authorization URL for incremental consent.
+     *
+     * Merges the user's currently granted scopes with the additionally
+     * needed scopes. If all needed scopes are already granted, returns
+     * a result with consentNeeded = false.
+     *
+     * Provider-specific behavior:
+     * - Google: pass ['include_granted_scopes' => 'true'] via $extraParams
+     * - GitHub: replaces full scope set (no native incremental, but
+     *   merge-and-send works — user re-consents to the full set)
+     * - Mastodon: reissues token with new scope set
+     *
+     * @param array<string, string> $extraParams
+     */
+    public function getIncrementalConsentUrl(
+        ScopeSet $currentScopes,
+        ScopeSet $neededScopes,
+        ?string $state = null,
+        ?string $codeChallenge = null,
+        ?string $codeChallengeMethod = null,
+        array $extraParams = [],
+    ): IncrementalConsentResult {
+        $merged = $currentScopes->union($neededScopes);
+
+        if ($currentScopes->hasAll($neededScopes)) {
+            return new IncrementalConsentResult(
+                authorizationUrl: '',
+                consentNeeded: false,
+                mergedScopes: $merged,
+            );
+        }
+
+        $url = $this->getAuthorizationUrl(
+            scopes: $merged->toArray(),
+            state: $state,
+            codeChallenge: $codeChallenge,
+            codeChallengeMethod: $codeChallengeMethod,
+            extraParams: $extraParams,
+        );
+
+        return new IncrementalConsentResult(
+            authorizationUrl: $url,
+            consentNeeded: true,
+            mergedScopes: $merged,
+        );
+    }
+
+    /**
      * @param array<string, string> $params
      */
     private function tokenRequest(array $params): TokenSet
