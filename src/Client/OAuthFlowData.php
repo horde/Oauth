@@ -22,6 +22,7 @@ final class OAuthFlowData
         public readonly string $flowType,
         public readonly int $createdAt,
         public readonly string $redirectUrl = '',
+        public readonly string $requestingApp = '',
     ) {}
 
     /**
@@ -36,6 +37,7 @@ final class OAuthFlowData
             'flow_type' => $this->flowType,
             'created_at' => $this->createdAt,
             'redirect_url' => $this->redirectUrl,
+            'requesting_app' => $this->requestingApp,
         ];
     }
 
@@ -51,6 +53,7 @@ final class OAuthFlowData
             flowType: (string) ($data['flow_type'] ?? ''),
             createdAt: (int) ($data['created_at'] ?? 0),
             redirectUrl: (string) ($data['redirect_url'] ?? ''),
+            requestingApp: (string) ($data['requesting_app'] ?? ''),
         );
     }
 }
