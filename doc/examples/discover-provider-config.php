@@ -42,7 +42,7 @@ echo str_repeat('-', 60) . "\n\n";
 
 try {
     $config = $discovery->discover($issuer);
-} catch (\Throwable $e) {
+} catch (Throwable $e) {
     fwrite(STDERR, "Discovery failed: {$e->getMessage()}\n");
     exit(1);
 }

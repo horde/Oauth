@@ -24,7 +24,7 @@ final class FileOAuthFlowStore implements OAuthFlowStore
 
     public function save(string $state, OAuthFlowData $data): void
     {
-        if (!is_dir($this->dir) && !mkdir($this->dir, 0750, true)) {
+        if (!is_dir($this->dir) && !mkdir($this->dir, 0o750, true)) {
             throw new RuntimeException('Cannot create flow store directory: ' . $this->dir);
         }
 
