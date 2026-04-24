@@ -186,6 +186,7 @@ final class OAuth2Client
 
         $request = $this->requestFactory->createRequest('POST', $this->provider->tokenEndpoint)
             ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+            ->withHeader('Accept', 'application/json')
             ->withBody($body);
 
         if ($this->clientSecret !== null && ($useBasic ?? false)) {
@@ -194,9 +195,14 @@ final class OAuth2Client
         }
 
         $response = $this->httpClient->sendRequest($request);
-        $data = json_decode((string) $response->getBody(), true, 512, JSON_THROW_ON_ERROR);
-
+        $responseBody = (string) $response->getBody();
+        $data = json_decode($responseBody, true, 512);
         if (!is_array($data)) {
+            // Fallback: some providers (e.g. GitHub) may return form-urlencoded
+            parse_str($responseBody, $data);
+        }
+
+        if (!is_array($data) || $data === []) {
             throw new OAuthException('invalid_request', 'Token endpoint returned invalid response');
         }
 
