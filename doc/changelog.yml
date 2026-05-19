@@ -48,6 +48,22 @@
     feat: Implement PKCE Verifier
     Add CI job for satis repo update
     Development mode for Oauth-3.0.0alpha3
+4.0.0-RC1:
+  api: 4.0.0-RC1
+  state:
+    release: RC
+    api: RC
+  date: 2026-05-19
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: |-
+    fix: explicitly demand a json answer and fall back to parsing response body
+    test: Cover PSR-4 variant of OAuth 1.0a protocol
+    feat: PSR-4 variant of the OAuth 1.0a protocol and upgrade docs
+    feat: horde/Oauth#2 Incremental consent support in OAuth2Client
+    feat: Implement horde/base#72 OAuthFlowData support for return URL and Requesting App
+    feat: Implement horde/OAuth #3 - Add an AuthenticatedHttpClient
 3.0.0alpha2:
   api: 1.0.0
   state:
