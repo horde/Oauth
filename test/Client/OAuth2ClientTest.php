@@ -1,0 +1,240 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Copyright 2026 The Horde Project (http://www.horde.org/)
+ *
+ * See the enclosed file LICENSE for license information (BSD). If you
+ * did not receive this file, see http://www.horde.org/licenses/bsd.
+ *
+ * @author   Jean Charles Delépine <jean.charles.delepine@u-picardie.fr>
+ */
+
+namespace Horde\OAuth\Test\Client;
+
+use Horde\OAuth\Client\OAuth2Client;
+use Horde\OAuth\Client\ProviderConfig;
+use Horde\OAuth\Exception\OAuthException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\TestCase;
+use Psr\Http\Client\ClientInterface;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
+
+#[CoversClass(OAuth2Client::class)]
+final class OAuth2ClientTest extends TestCase
+{
+    private ProviderConfig $provider;
+    private RequestInterface $request;
+    private StreamInterface $stream;
+    private StreamFactoryInterface $streamFactory;
+
+    protected function setUp(): void
+    {
+        $this->provider = ProviderConfig::fromArray([
+            'issuer'                 => 'https://idp.example.org',
+            'authorization_endpoint' => 'https://idp.example.org/authorize',
+            'token_endpoint'         => 'https://idp.example.org/token',
+            'revocation_endpoint'    => 'https://idp.example.org/revoke',
+        ]);
+
+        $this->stream        = $this->createStub(StreamInterface::class);
+        $this->request       = $this->createStub(RequestInterface::class);
+        $this->streamFactory = $this->createStub(StreamFactoryInterface::class);
+
+        $this->request->method('withHeader')->willReturnSelf();
+        $this->request->method('withBody')->willReturnSelf();
+        $this->streamFactory->method('createStream')->willReturn($this->stream);
+    }
+
+    private function makeClient(
+        ClientInterface $httpClient,
+        RequestFactoryInterface $requestFactory,
+        ?string $clientSecret = 'secret',
+        ?ProviderConfig $provider = null,
+    ): OAuth2Client {
+        return new OAuth2Client(
+            provider:       $provider ?? $this->provider,
+            clientId:       'test-client',
+            clientSecret:   $clientSecret,
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $this->streamFactory,
+        );
+    }
+
+    public function testRevokeTokenSendsPostToRevocationEndpoint(): void
+    {
+        $requestFactory = $this->createMock(RequestFactoryInterface::class);
+        $requestFactory
+            ->expects(self::once())
+            ->method('createRequest')
+            ->with('POST', 'https://idp.example.org/revoke')
+            ->willReturn($this->request);
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createMock(ClientInterface::class);
+        $httpClient
+            ->expects(self::once())
+            ->method('sendRequest')
+            ->willReturn($response);
+
+        $this->makeClient($httpClient, $requestFactory)->revokeToken('my-access-token');
+    }
+
+    public function testRevokeTokenIncludesTokenInBody(): void
+    {
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($this->request);
+
+        $capturedBody = null;
+        $streamFactory = $this->createStub(StreamFactoryInterface::class);
+        $streamFactory->method('createStream')
+            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
+                $capturedBody = $body;
+                return $this->stream;
+            });
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider:       $this->provider,
+            clientId:       'test-client',
+            clientSecret:   'secret',
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $streamFactory,
+        );
+
+        $client->revokeToken('my-access-token', 'access_token');
+
+        self::assertStringContainsString('token=my-access-token', $capturedBody);
+        self::assertStringContainsString('token_type_hint=access_token', $capturedBody);
+        self::assertStringContainsString('client_id=test-client', $capturedBody);
+        self::assertStringContainsString('client_secret=secret', $capturedBody);
+    }
+
+    public function testRevokeTokenWithDefaultHintIsAccessToken(): void
+    {
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($this->request);
+
+        $capturedBody = null;
+        $streamFactory = $this->createStub(StreamFactoryInterface::class);
+        $streamFactory->method('createStream')
+            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
+                $capturedBody = $body;
+                return $this->stream;
+            });
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider:       $this->provider,
+            clientId:       'test-client',
+            clientSecret:   'secret',
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $streamFactory,
+        );
+
+        $client->revokeToken('my-token');
+
+        self::assertStringContainsString('token_type_hint=access_token', $capturedBody);
+    }
+
+    public function testRevokeTokenWithoutClientSecretOmitsIt(): void
+    {
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($this->request);
+
+        $capturedBody = null;
+        $streamFactory = $this->createStub(StreamFactoryInterface::class);
+        $streamFactory->method('createStream')
+            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
+                $capturedBody = $body;
+                return $this->stream;
+            });
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider:       $this->provider,
+            clientId:       'test-client',
+            clientSecret:   null,
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $streamFactory,
+        );
+
+        $client->revokeToken('my-token');
+
+        self::assertStringNotContainsString('client_secret', $capturedBody);
+    }
+
+    public function testRevokeTokenThrowsWhenNoRevocationEndpoint(): void
+    {
+        $provider = ProviderConfig::fromArray([
+            'issuer'                 => 'https://idp.example.org',
+            'authorization_endpoint' => 'https://idp.example.org/authorize',
+            'token_endpoint'         => 'https://idp.example.org/token',
+        ]);
+
+        $httpClient     = $this->createStub(ClientInterface::class);
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+
+        $client = new OAuth2Client(
+            provider:       $provider,
+            clientId:       'test-client',
+            clientSecret:   'secret',
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $this->streamFactory,
+        );
+
+        $this->expectException(OAuthException::class);
+        $client->revokeToken('my-token');
+    }
+
+    public function testRevokeTokenThrowsOnErrorResponse(): void
+    {
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($this->request);
+
+        $body = $this->createStub(StreamInterface::class);
+        $body->method('__toString')->willReturn('{"error":"invalid_token","error_description":"Token expired"}');
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(400);
+        $response->method('getBody')->willReturn($body);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $this->expectException(OAuthException::class);
+        $this->makeClient($httpClient, $requestFactory)->revokeToken('bad-token');
+    }
+}

@@ -215,4 +215,46 @@ final class OAuth2Client
 
         return TokenSet::fromArray($data);
     }
+
+    /**
+     * Revoke a token at the provider's revocation endpoint (RFC 7009).
+     *
+     * @param string $token          The token to revoke (access or refresh).
+     * @param string $tokenTypeHint  'access_token' or 'refresh_token'.
+     * @throws OAuthException        If the provider has no revocation endpoint
+     *                               or the request fails.
+     */
+    public function revokeToken(string $token, string $tokenTypeHint = 'access_token'): void
+    {
+        if ($this->provider->revocationEndpoint === null) {
+            throw new OAuthException('invalid_request', 'Provider does not support a revocation endpoint');
+        }
+
+        $params = [
+            'token'           => $token,
+            'token_type_hint' => $tokenTypeHint,
+            'client_id'       => $this->clientId,
+        ];
+
+        if ($this->clientSecret !== null) {
+            $params['client_secret'] = $this->clientSecret;
+        }
+
+        $body = $this->streamFactory->createStream(http_build_query($params));
+
+        $request = $this->requestFactory->createRequest('POST', $this->provider->revocationEndpoint)
+            ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
+            ->withHeader('Accept', 'application/json')
+            ->withBody($body);
+
+        $response = $this->httpClient->sendRequest($request);
+
+        if ($response->getStatusCode() >= 400) {
+            $data = json_decode((string) $response->getBody(), true) ?? [];
+            throw new OAuthException(
+                $data['error'] ?? 'server_error',
+                $data['error_description'] ?? 'Token revocation failed',
+            );
+        }
+    }
 }
