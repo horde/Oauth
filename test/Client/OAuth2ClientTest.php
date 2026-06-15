@@ -40,6 +40,7 @@ final class OAuth2ClientTest extends TestCase
             'authorization_endpoint' => 'https://idp.example.org/authorize',
             'token_endpoint'         => 'https://idp.example.org/token',
             'revocation_endpoint'    => 'https://idp.example.org/revoke',
+	    'token_endpoint_auth_methods_supported' => ['client_secret_post'],
         ]);
 
         $this->stream        = $this->createStub(StreamInterface::class);
@@ -89,7 +90,7 @@ final class OAuth2ClientTest extends TestCase
         $this->makeClient($httpClient, $requestFactory)->revokeToken('my-access-token');
     }
 
-    public function testRevokeTokenIncludesTokenInBody(): void
+    public function testRevokeTokenIncludesTokenInBodyWhenPostConfigured(): void
     {
         $requestFactory = $this->createStub(RequestFactoryInterface::class);
         $requestFactory->method('createRequest')->willReturn($this->request);
@@ -236,5 +237,103 @@ final class OAuth2ClientTest extends TestCase
 
         $this->expectException(OAuthException::class);
         $this->makeClient($httpClient, $requestFactory)->revokeToken('bad-token');
+    }
+
+    public function testRevokeTokenUsesBasicAuthWhenConfigured(): void
+    {
+        $provider = ProviderConfig::fromArray([
+            'issuer'                                    => 'https://idp.example.org',
+            'authorization_endpoint'                    => 'https://idp.example.org/authorize',
+            'token_endpoint'                            => 'https://idp.example.org/token',
+            'revocation_endpoint'                       => 'https://idp.example.org/revoke',
+            'token_endpoint_auth_methods_supported'     => ['client_secret_basic'],
+        ]);
+
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($this->request);
+
+        $capturedBody = null;
+        $capturedAuth = null;
+        $this->request->method('withHeader')
+            ->willReturnCallback(function (string $name, string $value) use (&$capturedAuth): RequestInterface {
+                if ($name === 'Authorization') {
+                    $capturedAuth = $value;
+                }
+                return $this->request;
+            });
+
+        $streamFactory = $this->createStub(StreamFactoryInterface::class);
+        $streamFactory->method('createStream')
+            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
+                $capturedBody = $body;
+                return $this->stream;
+            });
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider:       $provider,
+            clientId:       'test-client',
+            clientSecret:   'secret',
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $streamFactory,
+        );
+
+        $client->revokeToken('my-token');
+
+        self::assertStringNotContainsString('client_secret', $capturedBody);
+        self::assertStringStartsWith('Basic ', $capturedAuth);
+        self::assertSame(
+            'Basic ' . base64_encode(urlencode('test-client') . ':' . urlencode('secret')),
+            $capturedAuth
+        );
+    }
+
+    public function testRevokeTokenUsesPostWhenBothMethodsSupported(): void
+    {
+        $provider = ProviderConfig::fromArray([
+            'issuer'                                => 'https://idp.example.org',
+            'authorization_endpoint'                => 'https://idp.example.org/authorize',
+            'token_endpoint'                        => 'https://idp.example.org/token',
+            'revocation_endpoint'                   => 'https://idp.example.org/revoke',
+            'token_endpoint_auth_methods_supported' => ['client_secret_basic', 'client_secret_post'],
+        ]);
+
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($this->request);
+
+        $capturedBody = null;
+        $streamFactory = $this->createStub(StreamFactoryInterface::class);
+        $streamFactory->method('createStream')
+            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
+                $capturedBody = $body;
+                return $this->stream;
+            });
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider:       $provider,
+            clientId:       'test-client',
+            clientSecret:   'secret',
+            redirectUri:    'https://horde.example.org/callback',
+            httpClient:     $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory:  $streamFactory,
+        );
+
+        $client->revokeToken('my-token');
+
+        self::assertStringContainsString('client_secret=secret', $capturedBody);
     }
 }

@@ -236,8 +236,14 @@ final class OAuth2Client
             'client_id'       => $this->clientId,
         ];
 
+        $useBasic = false;
         if ($this->clientSecret !== null) {
-            $params['client_secret'] = $this->clientSecret;
+            $useBasic = in_array('client_secret_basic', $this->provider->tokenEndpointAuthMethodsSupported, true)
+                && !in_array('client_secret_post', $this->provider->tokenEndpointAuthMethodsSupported, true);
+
+            if (!$useBasic) {
+                $params['client_secret'] = $this->clientSecret;
+            }
         }
 
         $body = $this->streamFactory->createStream(http_build_query($params));
@@ -246,6 +252,11 @@ final class OAuth2Client
             ->withHeader('Content-Type', 'application/x-www-form-urlencoded')
             ->withHeader('Accept', 'application/json')
             ->withBody($body);
+
+        if ($this->clientSecret !== null && $useBasic) {
+            $credentials = base64_encode(urlencode($this->clientId) . ':' . urlencode($this->clientSecret));
+            $request = $request->withHeader('Authorization', 'Basic ' . $credentials);
+        }
 
         $response = $this->httpClient->sendRequest($request);
 
