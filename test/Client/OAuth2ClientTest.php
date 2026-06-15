@@ -346,4 +346,91 @@ final class OAuth2ClientTest extends TestCase
 
         self::assertStringContainsString('client_secret=secret', $capturedBody);
     }
+
+    public function testRevokeTokenPrefersRevocationAuthMethodsWhenAdvertised(): void
+    {
+        // Token endpoint advertises post; revocation endpoint advertises
+        // basic only. The override must win for revokeToken().
+        $provider = ProviderConfig::fromArray([
+            'issuer'                                     => 'https://idp.example.org',
+            'authorization_endpoint'                     => 'https://idp.example.org/authorize',
+            'token_endpoint'                             => 'https://idp.example.org/token',
+            'revocation_endpoint'                        => 'https://idp.example.org/revoke',
+            'token_endpoint_auth_methods_supported'      => ['client_secret_post'],
+            'revocation_endpoint_auth_methods_supported' => ['client_secret_basic'],
+        ]);
+
+        $capturedAuth = null;
+        $request      = $this->captureAuthHeader($capturedAuth);
+
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($request);
+
+        $capturedBody  = null;
+        $streamFactory = $this->captureStreamBody($capturedBody);
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider: $provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory: $streamFactory,
+        );
+
+        $client->revokeToken('my-token');
+
+        self::assertStringNotContainsString('client_secret', $capturedBody);
+        self::assertStringStartsWith('Basic ', $capturedAuth);
+    }
+
+    public function testRevokeTokenFallsBackToTokenAuthMethodsWhenRevocationNotAdvertised(): void
+    {
+        // Revocation endpoint advertises no auth methods. Per RFC 8414 §2,
+        // fall back to the token endpoint's advertised methods.
+        $provider = ProviderConfig::fromArray([
+            'issuer'                                => 'https://idp.example.org',
+            'authorization_endpoint'                => 'https://idp.example.org/authorize',
+            'token_endpoint'                        => 'https://idp.example.org/token',
+            'revocation_endpoint'                   => 'https://idp.example.org/revoke',
+            'token_endpoint_auth_methods_supported' => ['client_secret_basic'],
+        ]);
+
+        $capturedAuth = null;
+        $request      = $this->captureAuthHeader($capturedAuth);
+
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($request);
+
+        $capturedBody  = null;
+        $streamFactory = $this->captureStreamBody($capturedBody);
+
+        $response = $this->createStub(ResponseInterface::class);
+        $response->method('getStatusCode')->willReturn(200);
+
+        $httpClient = $this->createStub(ClientInterface::class);
+        $httpClient->method('sendRequest')->willReturn($response);
+
+        $client = new OAuth2Client(
+            provider: $provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
+            requestFactory: $requestFactory,
+            streamFactory: $streamFactory,
+        );
+
+        $client->revokeToken('my-token');
+
+        self::assertStringNotContainsString('client_secret', $capturedBody);
+        self::assertStringStartsWith('Basic ', $capturedAuth);
+    }
 }

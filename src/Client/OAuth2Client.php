@@ -219,6 +219,10 @@ final class OAuth2Client
     /**
      * Revoke a token at the provider's revocation endpoint (RFC 7009).
      *
+     * Client authentication uses revocation_endpoint_auth_methods_supported
+     * when advertised, falling back to token_endpoint_auth_methods_supported
+     * per RFC 8414 §2.
+     *
      * @param string $token          The token to revoke (access or refresh).
      * @param string $tokenTypeHint  'access_token' or 'refresh_token'.
      * @throws OAuthException        If the provider has no revocation endpoint
@@ -236,10 +240,13 @@ final class OAuth2Client
             'client_id'       => $this->clientId,
         ];
 
+        $authMethods = $this->provider->revocationEndpointAuthMethodsSupported
+            ?? $this->provider->tokenEndpointAuthMethodsSupported;
+
         $useBasic = false;
         if ($this->clientSecret !== null) {
-            $useBasic = in_array('client_secret_basic', $this->provider->tokenEndpointAuthMethodsSupported, true)
-                && !in_array('client_secret_post', $this->provider->tokenEndpointAuthMethodsSupported, true);
+            $useBasic = in_array('client_secret_basic', $authMethods, true)
+                && !in_array('client_secret_post', $authMethods, true);
 
             if (!$useBasic) {
                 $params['client_secret'] = $this->clientSecret;

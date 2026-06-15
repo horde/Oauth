@@ -16,11 +16,15 @@ namespace Horde\OAuth\Client;
 final class ProviderConfig
 {
     /**
-     * @param string[] $scopesSupported
-     * @param string[] $responseTypesSupported
-     * @param string[] $grantTypesSupported
-     * @param string[] $tokenEndpointAuthMethodsSupported
-     * @param string[] $idTokenSigningAlgValuesSupported
+     * @param string[]      $scopesSupported
+     * @param string[]      $responseTypesSupported
+     * @param string[]      $grantTypesSupported
+     * @param string[]      $tokenEndpointAuthMethodsSupported
+     * @param string[]|null $revocationEndpointAuthMethodsSupported  RFC 8414
+     *      §2 override for the revocation endpoint. Null means "not
+     *      advertised; fall back to tokenEndpointAuthMethodsSupported per
+     *      RFC 8414 §2's specified default."
+     * @param string[]      $idTokenSigningAlgValuesSupported
      */
     public function __construct(
         public readonly string $issuer,
@@ -34,6 +38,7 @@ final class ProviderConfig
         public readonly array $responseTypesSupported = ['code'],
         public readonly array $grantTypesSupported = [],
         public readonly array $tokenEndpointAuthMethodsSupported = ['client_secret_basic'],
+        public readonly ?array $revocationEndpointAuthMethodsSupported = null,
         public readonly array $idTokenSigningAlgValuesSupported = [],
     ) {}
 
@@ -54,6 +59,9 @@ final class ProviderConfig
             responseTypesSupported: (array) ($data['response_types_supported'] ?? ['code']),
             grantTypesSupported: (array) ($data['grant_types_supported'] ?? []),
             tokenEndpointAuthMethodsSupported: (array) ($data['token_endpoint_auth_methods_supported'] ?? ['client_secret_basic']),
+            revocationEndpointAuthMethodsSupported: isset($data['revocation_endpoint_auth_methods_supported'])
+                ? (array) $data['revocation_endpoint_auth_methods_supported']
+                : null,
             idTokenSigningAlgValuesSupported: (array) ($data['id_token_signing_alg_values_supported'] ?? []),
         );
     }
@@ -75,6 +83,7 @@ final class ProviderConfig
             'response_types_supported' => $this->responseTypesSupported,
             'grant_types_supported' => $this->grantTypesSupported,
             'token_endpoint_auth_methods_supported' => $this->tokenEndpointAuthMethodsSupported,
+            'revocation_endpoint_auth_methods_supported' => $this->revocationEndpointAuthMethodsSupported,
             'id_token_signing_alg_values_supported' => $this->idTokenSigningAlgValuesSupported,
         ], static fn($v) => $v !== null && $v !== []);
     }
