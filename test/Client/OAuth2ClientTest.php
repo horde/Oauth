@@ -36,10 +36,10 @@ final class OAuth2ClientTest extends TestCase
     protected function setUp(): void
     {
         $this->provider = ProviderConfig::fromArray([
-            'issuer'                 => 'https://idp.example.org',
-            'authorization_endpoint' => 'https://idp.example.org/authorize',
-            'token_endpoint'         => 'https://idp.example.org/token',
-            'revocation_endpoint'    => 'https://idp.example.org/revoke',
+            'issuer'                                => 'https://idp.example.org',
+            'authorization_endpoint'                => 'https://idp.example.org/authorize',
+            'token_endpoint'                        => 'https://idp.example.org/token',
+            'revocation_endpoint'                   => 'https://idp.example.org/revoke',
             'token_endpoint_auth_methods_supported' => ['client_secret_post'],
         ]);
 
@@ -69,6 +69,47 @@ final class OAuth2ClientTest extends TestCase
         );
     }
 
+    /**
+     * Returns a stream factory whose createStream() captures the body string
+     * passed in, then returns the shared $this->stream stub. Use when a test
+     * needs to assert on the wire body without touching a real HTTP layer.
+     */
+    private function captureStreamBody(?string &$captured): StreamFactoryInterface
+    {
+        $factory = $this->createStub(StreamFactoryInterface::class);
+        $factory->method('createStream')
+            ->willReturnCallback(function (string $body) use (&$captured): StreamInterface {
+                $captured = $body;
+                return $this->stream;
+            });
+        return $factory;
+    }
+
+    /**
+     * Returns a fresh RequestInterface stub (NOT $this->request) whose
+     * withHeader() captures any "Authorization" value into $captured and
+     * returns itself. withBody() also returns itself so the production
+     * code's fluent chain (withHeader()->withHeader()->withBody()->...)
+     * resolves correctly.
+     *
+     * Using a fresh stub here — instead of re-stubbing $this->request from
+     * setUp() — avoids PHPUnit's matcher-fallthrough behaviour when the
+     * same method is configured twice on the same stub.
+     */
+    private function captureAuthHeader(?string &$captured): RequestInterface
+    {
+        $request = $this->createStub(RequestInterface::class);
+        $request->method('withBody')->willReturn($request);
+        $request->method('withHeader')
+            ->willReturnCallback(function (string $name, string $value) use (&$captured, $request): RequestInterface {
+                if ($name === 'Authorization') {
+                    $captured = $value;
+                }
+                return $request;
+            });
+        return $request;
+    }
+
     public function testRevokeTokenSendsPostToRevocationEndpoint(): void
     {
         $requestFactory = $this->createMock(RequestFactoryInterface::class);
@@ -96,12 +137,7 @@ final class OAuth2ClientTest extends TestCase
         $requestFactory->method('createRequest')->willReturn($this->request);
 
         $capturedBody = null;
-        $streamFactory = $this->createStub(StreamFactoryInterface::class);
-        $streamFactory->method('createStream')
-            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
-                $capturedBody = $body;
-                return $this->stream;
-            });
+        $streamFactory = $this->captureStreamBody($capturedBody);
 
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(200);
@@ -133,12 +169,7 @@ final class OAuth2ClientTest extends TestCase
         $requestFactory->method('createRequest')->willReturn($this->request);
 
         $capturedBody = null;
-        $streamFactory = $this->createStub(StreamFactoryInterface::class);
-        $streamFactory->method('createStream')
-            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
-                $capturedBody = $body;
-                return $this->stream;
-            });
+        $streamFactory = $this->captureStreamBody($capturedBody);
 
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(200);
@@ -167,12 +198,7 @@ final class OAuth2ClientTest extends TestCase
         $requestFactory->method('createRequest')->willReturn($this->request);
 
         $capturedBody = null;
-        $streamFactory = $this->createStub(StreamFactoryInterface::class);
-        $streamFactory->method('createStream')
-            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
-                $capturedBody = $body;
-                return $this->stream;
-            });
+        $streamFactory = $this->captureStreamBody($capturedBody);
 
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(200);
@@ -242,32 +268,21 @@ final class OAuth2ClientTest extends TestCase
     public function testRevokeTokenUsesBasicAuthWhenConfigured(): void
     {
         $provider = ProviderConfig::fromArray([
-            'issuer'                                    => 'https://idp.example.org',
-            'authorization_endpoint'                    => 'https://idp.example.org/authorize',
-            'token_endpoint'                            => 'https://idp.example.org/token',
-            'revocation_endpoint'                       => 'https://idp.example.org/revoke',
-            'token_endpoint_auth_methods_supported'     => ['client_secret_basic'],
+            'issuer'                                => 'https://idp.example.org',
+            'authorization_endpoint'                => 'https://idp.example.org/authorize',
+            'token_endpoint'                        => 'https://idp.example.org/token',
+            'revocation_endpoint'                   => 'https://idp.example.org/revoke',
+            'token_endpoint_auth_methods_supported' => ['client_secret_basic'],
         ]);
 
-        $requestFactory = $this->createStub(RequestFactoryInterface::class);
-        $requestFactory->method('createRequest')->willReturn($this->request);
-
-        $capturedBody = null;
         $capturedAuth = null;
-        $this->request->method('withHeader')
-            ->willReturnCallback(function (string $name, string $value) use (&$capturedAuth): RequestInterface {
-                if ($name === 'Authorization') {
-                    $capturedAuth = $value;
-                }
-                return $this->request;
-            });
+        $request      = $this->captureAuthHeader($capturedAuth);
 
-        $streamFactory = $this->createStub(StreamFactoryInterface::class);
-        $streamFactory->method('createStream')
-            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
-                $capturedBody = $body;
-                return $this->stream;
-            });
+        $requestFactory = $this->createStub(RequestFactoryInterface::class);
+        $requestFactory->method('createRequest')->willReturn($request);
+
+        $capturedBody  = null;
+        $streamFactory = $this->captureStreamBody($capturedBody);
 
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(200);
@@ -308,13 +323,8 @@ final class OAuth2ClientTest extends TestCase
         $requestFactory = $this->createStub(RequestFactoryInterface::class);
         $requestFactory->method('createRequest')->willReturn($this->request);
 
-        $capturedBody = null;
-        $streamFactory = $this->createStub(StreamFactoryInterface::class);
-        $streamFactory->method('createStream')
-            ->willReturnCallback(function (string $body) use (&$capturedBody): StreamInterface {
-                $capturedBody = $body;
-                return $this->stream;
-            });
+        $capturedBody  = null;
+        $streamFactory = $this->captureStreamBody($capturedBody);
 
         $response = $this->createStub(ResponseInterface::class);
         $response->method('getStatusCode')->willReturn(200);
