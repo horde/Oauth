@@ -40,7 +40,7 @@ final class OAuth2ClientTest extends TestCase
             'authorization_endpoint' => 'https://idp.example.org/authorize',
             'token_endpoint'         => 'https://idp.example.org/token',
             'revocation_endpoint'    => 'https://idp.example.org/revoke',
-	    'token_endpoint_auth_methods_supported' => ['client_secret_post'],
+            'token_endpoint_auth_methods_supported' => ['client_secret_post'],
         ]);
 
         $this->stream        = $this->createStub(StreamInterface::class);
@@ -59,13 +59,13 @@ final class OAuth2ClientTest extends TestCase
         ?ProviderConfig $provider = null,
     ): OAuth2Client {
         return new OAuth2Client(
-            provider:       $provider ?? $this->provider,
-            clientId:       'test-client',
-            clientSecret:   $clientSecret,
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $provider ?? $this->provider,
+            clientId: 'test-client',
+            clientSecret: $clientSecret,
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $this->streamFactory,
+            streamFactory: $this->streamFactory,
         );
     }
 
@@ -110,13 +110,13 @@ final class OAuth2ClientTest extends TestCase
         $httpClient->method('sendRequest')->willReturn($response);
 
         $client = new OAuth2Client(
-            provider:       $this->provider,
-            clientId:       'test-client',
-            clientSecret:   'secret',
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $this->provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $streamFactory,
+            streamFactory: $streamFactory,
         );
 
         $client->revokeToken('my-access-token', 'access_token');
@@ -147,13 +147,13 @@ final class OAuth2ClientTest extends TestCase
         $httpClient->method('sendRequest')->willReturn($response);
 
         $client = new OAuth2Client(
-            provider:       $this->provider,
-            clientId:       'test-client',
-            clientSecret:   'secret',
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $this->provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $streamFactory,
+            streamFactory: $streamFactory,
         );
 
         $client->revokeToken('my-token');
@@ -181,13 +181,13 @@ final class OAuth2ClientTest extends TestCase
         $httpClient->method('sendRequest')->willReturn($response);
 
         $client = new OAuth2Client(
-            provider:       $this->provider,
-            clientId:       'test-client',
-            clientSecret:   null,
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $this->provider,
+            clientId: 'test-client',
+            clientSecret: null,
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $streamFactory,
+            streamFactory: $streamFactory,
         );
 
         $client->revokeToken('my-token');
@@ -207,13 +207,13 @@ final class OAuth2ClientTest extends TestCase
         $requestFactory = $this->createStub(RequestFactoryInterface::class);
 
         $client = new OAuth2Client(
-            provider:       $provider,
-            clientId:       'test-client',
-            clientSecret:   'secret',
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $this->streamFactory,
+            streamFactory: $this->streamFactory,
         );
 
         $this->expectException(OAuthException::class);
@@ -276,13 +276,13 @@ final class OAuth2ClientTest extends TestCase
         $httpClient->method('sendRequest')->willReturn($response);
 
         $client = new OAuth2Client(
-            provider:       $provider,
-            clientId:       'test-client',
-            clientSecret:   'secret',
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $streamFactory,
+            streamFactory: $streamFactory,
         );
 
         $client->revokeToken('my-token');
@@ -323,13 +323,13 @@ final class OAuth2ClientTest extends TestCase
         $httpClient->method('sendRequest')->willReturn($response);
 
         $client = new OAuth2Client(
-            provider:       $provider,
-            clientId:       'test-client',
-            clientSecret:   'secret',
-            redirectUri:    'https://horde.example.org/callback',
-            httpClient:     $httpClient,
+            provider: $provider,
+            clientId: 'test-client',
+            clientSecret: 'secret',
+            redirectUri: 'https://horde.example.org/callback',
+            httpClient: $httpClient,
             requestFactory: $requestFactory,
-            streamFactory:  $streamFactory,
+            streamFactory: $streamFactory,
         );
 
         $client->revokeToken('my-token');
