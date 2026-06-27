@@ -10,14 +10,12 @@ list: horde
 type: library
 homepage: https://www.horde.org/libraries/Horde_Oauth
 authors:
-  -
-    name: Chuck Hagenbuch
+  - name: Chuck Hagenbuch
     user: chuck
     email: chuck@horde.org
     active: false
     role: lead
-  -
-    name: Ralf Lang
+  - name: Ralf Lang
     user: ralf.lang
     email: ralf.lang@ralf-lang.de
     role: lead
@@ -63,3 +61,28 @@ autoload-dev:
 quality:
   phpstan:
     level: 3
+ci-platform:
+  '8.1':
+    - php: ^8.1
+    - ext-hash
+    - ext-openssl
+  '8.2':
+    - php: ^8.1
+    - ext-hash
+    - ext-openssl
+  '8.3':
+    - php: ^8.1
+    - ext-hash
+    - ext-openssl
+  '8.4':
+    - php: ^8.1
+    - ext-hash
+    - ext-openssl
+  '8.5':
+    - php: ^8.1
+    - ext-hash
+    - ext-openssl
+  '8.6':
+    - php: ^8.1
+    - ext-hash
+    - ext-openssl
