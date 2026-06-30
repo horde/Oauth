@@ -86,3 +86,5 @@ ci-platform:
     - php: ^8.1
     - ext-hash
     - ext-openssl
+ci-platform-flags:
+  needs_installer_plugin: false
