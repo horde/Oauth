@@ -1,53 +1,14 @@
 ---
-4.0.0-beta3:
-  api: 4.0.0-beta3
+4.0.0:
+  api: 4.0.0
   state:
-    release: beta
-    api: beta
-  date: 2026-04-22
+    release: stable
+    api: stable
+  date: 2026-06-30
   license:
     identifier: BSD-2-Clause
     uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    chore: Add explicit deviating autoloader rule
-    feat: Model flow data and store
-4.0.0-beta2:
-  api: 4.0.0-beta2
-  state:
-    release: beta
-    api: beta
-  date: 2026-04-22
-  license:
-    identifier: BSD-2-Clause
-    uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    docs: Add demo script on how to discover a provider's endpoints
-    refactor: Consolidate on OAuth2 rather than Oauth2 naming
-4.0.0-beta1:
-  api: 4.0.0-beta1
-  state:
-    release: beta
-    api: beta
-  date: 2026-04-19
-  license:
-    identifier: BSD-2-Clause
-    uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    docs: Add an example how to discover a provider config
-    fix: metadata
-    style: php-cs-fixer
-    test: consolidated/merged unit test suite
-    feat: OpenID Connect layer (draft)
-    feat: OAuth 2 Client role
-    feat: Exception handling
-    feat: PSR-7/14 layer
-    feat: interface and implementation for grants
-    feat: Draft consent, access token, refresh token, scope and authorization code entities
-    feat: Implement TokenIssuers for access token and refresh token
-    feat: Implement repository interfaces and an InMemory reference implementation
-    feat: Implement PKCE Verifier
-    Add CI job for satis repo update
-    Development mode for Oauth-3.0.0alpha3
+  notes: "chore: update CI\nci: install horde-components CI pipeline\nfeat(client): honour revocation_endpoint_auth_methods_supported override\nrefactor(test): factor capture helpers in OAuth2ClientTest\nstyle: whitespace\nfix: honour tokenEndpointAuthMethodsSupported in revokeToken()\nfeat: add revokeToken() to OAuth2Client (RFC 7009)\nchore: Update workflow dependency"
 4.0.0-RC1:
   api: 4.0.0-RC1
   state:
@@ -57,13 +18,37 @@
   license:
     identifier: BSD-2-Clause
     uri: https://spdx.org/licenses/BSD-2-Clause.html
-  notes: |-
-    fix: explicitly demand a json answer and fall back to parsing response body
-    test: Cover PSR-4 variant of OAuth 1.0a protocol
-    feat: PSR-4 variant of the OAuth 1.0a protocol and upgrade docs
-    feat: horde/Oauth#2 Incremental consent support in OAuth2Client
-    feat: Implement horde/base#72 OAuthFlowData support for return URL and Requesting App
-    feat: Implement horde/OAuth #3 - Add an AuthenticatedHttpClient
+  notes: "fix: explicitly demand a json answer and fall back to parsing response body\ntest: Cover PSR-4 variant of OAuth 1.0a protocol\nfeat: PSR-4 variant of the OAuth 1.0a protocol and upgrade docs\nfeat: horde/Oauth#2 Incremental consent support in OAuth2Client\nfeat: Implement horde/base#72 OAuthFlowData support for return URL and Requesting App\nfeat: Implement horde/OAuth #3 - Add an AuthenticatedHttpClient"
+4.0.0-beta3:
+  api: 4.0.0-beta3
+  state:
+    release: beta
+    api: beta
+  date: 2026-04-22
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: "chore: Add explicit deviating autoloader rule\nfeat: Model flow data and store"
+4.0.0-beta2:
+  api: 4.0.0-beta2
+  state:
+    release: beta
+    api: beta
+  date: 2026-04-22
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: "docs: Add demo script on how to discover a provider's endpoints\nrefactor: Consolidate on OAuth2 rather than Oauth2 naming"
+4.0.0-beta1:
+  api: 4.0.0-beta1
+  state:
+    release: beta
+    api: beta
+  date: 2026-04-19
+  license:
+    identifier: BSD-2-Clause
+    uri: https://spdx.org/licenses/BSD-2-Clause.html
+  notes: "docs: Add an example how to discover a provider config\nfix: metadata\nstyle: php-cs-fixer\ntest: consolidated/merged unit test suite\nfeat: OpenID Connect layer (draft)\nfeat: OAuth 2 Client role\nfeat: Exception handling\nfeat: PSR-7/14 layer\nfeat: interface and implementation for grants\nfeat: Draft consent, access token, refresh token, scope and authorization code entities\nfeat: Implement TokenIssuers for access token and refresh token\nfeat: Implement repository interfaces and an InMemory reference implementation\nfeat: Implement PKCE Verifier\nAdd CI job for satis repo update\nDevelopment mode for Oauth-3.0.0alpha3"
 3.0.0alpha2:
   api: 1.0.0
   state:
@@ -73,7 +58,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |+
+  notes: ''
 3.0.0alpha1:
   api: 1.0.0
   state:
@@ -83,8 +68,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [rla] Package for H6 / composer installer.
+  notes: "[rla] Package for H6 / composer installer.\n"
 2.0.5:
   api: 1.0.0
   state:
@@ -94,7 +78,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: ~
+  notes: null
 2.0.4:
   api: 1.0.0
   state:
@@ -104,8 +88,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Mark PHP 7 as supported.
+  notes: "[jan] Mark PHP 7 as supported.\n"
 2.0.3:
   api: 1.0.0
   state:
@@ -115,8 +98,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Fix issues with certain locales like Turkish.
+  notes: "[jan] Fix issues with certain locales like Turkish.\n"
 2.0.2:
   api: 1.0.0
   state:
@@ -126,8 +108,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Add Composer definition.
+  notes: "[jan] Add Composer definition.\n"
 2.0.1:
   api: 1.0.0
   state:
@@ -137,31 +118,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [jan] Re-packaged 2.0.0 release.
-2.0.0beta1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: stable
-  date: 2012-07-19
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First beta release for Horde 5.
-2.0.0alpha1:
-  api: 1.0.0
-  state:
-    release: alpha
-    api: stable
-  date: 2012-07-05
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First alpha release for Horde 5.
-    [mjr] Fix building signature when using over ssl.
+  notes: "[jan] Re-packaged 2.0.0 release.\n"
 2.0.0:
   api: 1.0.0
   state:
@@ -171,8 +128,27 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First stable release for Horde 5.
+  notes: "First stable release for Horde 5.\n"
+2.0.0beta1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: stable
+  date: 2012-07-19
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "First beta release for Horde 5.\n"
+2.0.0alpha1:
+  api: 1.0.0
+  state:
+    release: alpha
+    api: stable
+  date: 2012-07-05
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "First alpha release for Horde 5.\n[mjr] Fix building signature when using over ssl.\n"
 1.0.2:
   api: 1.0.0
   state:
@@ -182,8 +158,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [mjr] Fix building signature when using over ssl.
+  notes: "[mjr] Fix building signature when using over ssl.\n"
 1.0.1:
   api: 1.0.0
   state:
@@ -193,52 +168,7 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    [rla] Add license file.
-1.0.0beta1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-16
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First beta release for Horde 4.
-1.0.0alpha1:
-  api: 1.0.0
-  state:
-    release: alpha
-    api: alpha
-  date: 2011-03-08
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First alpha release for Horde 4.
-1.0.0RC2:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-29
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    Second release candidate for Horde 4.
-1.0.0RC1:
-  api: 1.0.0
-  state:
-    release: beta
-    api: beta
-  date: 2011-03-22
-  license:
-    identifier: BSD-2-Clause
-    uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First release candidate for Horde 4.
+  notes: "[rla] Add license file.\n"
 1.0.0:
   api: 1.0.0
   state:
@@ -248,8 +178,47 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    First stable release for Horde 4.
+  notes: "First stable release for Horde 4.\n"
+1.0.0RC2:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-29
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "Second release candidate for Horde 4.\n"
+1.0.0RC1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-22
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "First release candidate for Horde 4.\n"
+1.0.0beta1:
+  api: 1.0.0
+  state:
+    release: beta
+    api: beta
+  date: 2011-03-16
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "First beta release for Horde 4.\n"
+1.0.0alpha1:
+  api: 1.0.0
+  state:
+    release: alpha
+    api: alpha
+  date: 2011-03-08
+  license:
+    identifier: BSD-2-Clause
+    uri: http://www.horde.org/licenses/bsd
+  notes: "First alpha release for Horde 4.\n"
 0.1.0:
   api: 0.1.0
   state:
@@ -259,5 +228,4 @@
   license:
     identifier: BSD-2-Clause
     uri: http://www.horde.org/licenses/bsd
-  notes: |
-    Initial release
+  notes: "Initial release\n"
